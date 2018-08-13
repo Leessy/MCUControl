@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.onfacemind.mculibrary">
+
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application>
+        <service
+            android:name=".JT808.Server.MCUDataServer"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":MCUServer">
+            <intent-filter>
+                <action android:name="com.onfacemind.mculibrary" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".JT808.Receiver.ServiceBootReceiver">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

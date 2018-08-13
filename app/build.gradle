@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.onfacemind.mculib"
+        minSdkVersion 14
+        targetSdkVersion 26
+        versionCode 5
+        versionName "1.5"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //版本输出规则   型号 + versionname -- versioncode
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->  // each 改为 all
+//            def fileName = "F702_${variant.versionName}.apk"
+            def fileName = "MCULib_V${variant.versionName + "--" + variant.versionCode}.apk"
+            def outFile = output.outputFile
+            if (outFile != null && outFile.name.endsWith('.apk')) {
+                outputFileName = fileName  //  output.outputFile 改为 outputFileName
+            }
+            //删除unaligned apk
+            if (output.zipAlign != null) {
+                output.zipAlign.doLast {
+//                    output.zipAlign.inputFile.delete()
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation project(':MCULibrary')
+}
