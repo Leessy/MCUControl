@@ -1,7 +1,5 @@
 package com.onfacemind.mculib;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -13,19 +11,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.onfacemind.mculibrary.JT808.Msg.MsgDecoder;
-import com.onfacemind.mculibrary.JT808.Msg.TPMSConsts;
 import com.onfacemind.mculibrary.JT808.util.HexStringUtils;
 import com.onfacemind.mculibrary.JT808.vo.Response.Mcu_Common;
 import com.onfacemind.mculibrary.JT808.vo.Response.Mcu_Notification;
 import com.onfacemind.mculibrary.JT808.vo.Response.Mcu_query_response;
 import com.onfacemind.mculibrary.JT808.vo.SendMsg.Mcu_SendMsg_Type;
 import com.onfacemind.mculibrary.MCU;
-import com.onfacemind.mculibrary.PackageData;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -478,7 +473,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void testLeds() {
         int random = getRandom(4, 8);
-        Log.d(TAG, "testLeds: ="+random);
+        Log.d(TAG, "testLeds: =" + random);
         Observable.timer(random, TimeUnit.SECONDS).subscribe(new Consumer<Long>() {
             @Override
             public void accept(Long aLong) throws Exception {

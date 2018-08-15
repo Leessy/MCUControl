@@ -155,7 +155,7 @@ public class MCUDataServer extends Service {
                 });
         AppHeartbeat = PublishSubject.create();
 
-        AppHeartbeat.debounce(25, TimeUnit.SECONDS)
+        AppHeartbeat.debounce(23, TimeUnit.SECONDS)
                 .subscribe(new Consumer() {
                     @Override
                     public void accept(Object o) throws Exception {
@@ -320,6 +320,8 @@ public class MCUDataServer extends Service {
         @Override
         public void setNotification(com.onfacemind.mculibrary.IMCUNotification Notification) throws RemoteException {
             mNotification = Notification;
+            //点击一次屏幕中央   在应用程序崩溃重启时点击提示窗
+            SelectLauncherUtil.simulateClickCrash(mContext);
         }
 
         @Override

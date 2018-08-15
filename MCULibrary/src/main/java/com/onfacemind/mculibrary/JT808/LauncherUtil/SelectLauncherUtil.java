@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 
+import com.onfacemind.mculibrary.JT808.util.CMDUtil;
 import com.onfacemind.mculibrary.Log;
 
 import android.text.TextUtils;
@@ -23,6 +24,7 @@ import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author Created by 刘承. on 2018/7/28
@@ -58,21 +60,26 @@ public class SelectLauncherUtil {
                         if (aBoolean) {
                             simulateClick(context);
                         } else {
-                            //1.没有显示选择界面，判断是否在主屏幕界面
-                            //2.判断没有启动本应该程序的activity时
+                            //.没有显示选择界面，判断是否在主屏幕界面
+                            //.判断没有启动本应该程序的activity时
 
+                            //1.停留在系统桌面
 //                            if (isForeground(context, "com.android.launcher2.Launcher")) {
 //                                Intent intent = new Intent();
 //                                intent.setAction(context.getPackageName() + ".LAUNCHER");
 //                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                                context.startActivity(intent);
 //                            }
-                            //当前显示界面 不是本应用程序的
+                            //2.当前显示界面 不是本应用程序的
                             if (!isForegroundContainsPackage(context)) {
-                                Intent intent = new Intent();
-                                intent.setAction(context.getPackageName() + ".LAUNCHER");
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                context.startActivity(intent);
+                                //方式 1.需要在启动activity配置filter
+//                                Intent intent = new Intent();
+//                                intent.setAction(context.getPackageName() + ".LAUNCHER");
+//                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                context.startActivity(intent);
+
+                                //方式 2.获取本context的启动activity    需系统权限
+                                CMDUtil.startApp_MainActivity(context);
                             } else {
                                 //点击提示崩溃窗口  如果当前界面已自动启动
                                 simulateClickCrash(context);
@@ -86,31 +93,38 @@ public class SelectLauncherUtil {
     /**
      * 点击屏幕的崩溃提示 如果有的话
      */
-    public static void simulateClickCrash(Context context) {
-        Point size = getSize(context);
-        Log.d(TAG, "simulateClick: size=" + size.toString());
-        Point point1 = calculatePointCrash(size);
-        DataOutputStream dataOutputStream = null;
-        try {
-            // 申请su权限
-            Process process = Runtime.getRuntime().exec("su");
-            dataOutputStream = new DataOutputStream(process.getOutputStream());
-            // 执行pm install命令
-            String command2 = "input tap " + point1.x + " " + point1.y + "\n"; //force-stop;  680   750
-            dataOutputStream.write(command2.getBytes(Charset.forName("utf-8")));
-            dataOutputStream.flush();
-            dataOutputStream.writeBytes("exit\n");
-            dataOutputStream.flush();
-            process.waitFor();
-        } catch (Exception e) {
-        } finally {
-            try {
-                if (dataOutputStream != null) {
-                    dataOutputStream.close();
-                }
-            } catch (IOException e) {
-            }
-        }
+    public static void simulateClickCrash(Context mcontext) {
+        Observable.just(mcontext)
+                .observeOn(Schedulers.io())
+                .subscribe(new Consumer<Context>() {
+                    @Override
+                    public void accept(Context context) throws Exception {
+                        Point size = getSize(context);
+                        Log.d(TAG, "simulateClick: size=" + size.toString());
+                        Point point1 = calculatePointCrash(size);
+                        DataOutputStream dataOutputStream = null;
+                        try {
+                            // 申请su权限
+                            Process process = Runtime.getRuntime().exec("su");
+                            dataOutputStream = new DataOutputStream(process.getOutputStream());
+                            // 执行pm install命令
+                            String command2 = "input tap " + point1.x + " " + point1.y + "\n"; //force-stop;  680   750
+                            dataOutputStream.write(command2.getBytes(Charset.forName("utf-8")));
+                            dataOutputStream.flush();
+                            dataOutputStream.writeBytes("exit\n");
+                            dataOutputStream.flush();
+                            process.waitFor();
+                        } catch (Exception e) {
+                        } finally {
+                            try {
+                                if (dataOutputStream != null) {
+                                    dataOutputStream.close();
+                                }
+                            } catch (IOException e) {
+                            }
+                        }
+                    }
+                });
     }
 
     /**

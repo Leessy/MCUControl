@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 
+import io.reactivex.internal.schedulers.RxThreadFactory;
+import io.reactivex.schedulers.Schedulers;
+
 /**
  * 此工具类  对应 F902 包名使
  */
@@ -21,7 +24,7 @@ public class CMDUtil {
      * @param pkg
      */
     public static void killProgress(final String pkg) {
-        new Thread(new Runnable() {
+        Schedulers.io().scheduleDirect(new Runnable() {
             @Override
             public void run() {
                 DataOutputStream dataOutputStream = null;
@@ -47,7 +50,7 @@ public class CMDUtil {
                     }
                 }
             }
-        }).start();
+        });
     }
 
     /**
@@ -60,7 +63,7 @@ public class CMDUtil {
     public static void restartApp(Context context) {
         final String pkg = context.getPackageName();
         final String atv = getActivities(context, pkg);
-        new Thread(new Runnable() {
+        Schedulers.io().scheduleDirect(new Runnable() {
             @Override
             public void run() {
                 DataOutputStream dataOutputStream = null;
@@ -89,7 +92,45 @@ public class CMDUtil {
                     }
                 }
             }
-        }).start();
+        });
+    }
+
+    /**
+     * 启动 APP  MainActivity
+     * <p>
+     * 程序连续断开 重启机器
+     * <p>
+     * com.onfacemind.aiface902/com.onfacemind.aiface902.Activity.Home.StartActivity
+     */
+    public static void startApp_MainActivity(Context context) {
+        final String pkg = context.getPackageName();
+        final String atv = getActivities(context, pkg);
+        Schedulers.io().scheduleDirect(new Runnable() {
+            @Override
+            public void run() {
+                DataOutputStream dataOutputStream = null;
+                try {
+                    // 申请su权限
+                    Process process = Runtime.getRuntime().exec("su");
+                    dataOutputStream = new DataOutputStream(process.getOutputStream());
+                    // 执行pm install命令
+                    String command2 = "am start -n " + pkg + "/" + atv + "\n"; //am start -n 包名/包名.第一个Activity的名称";
+                    dataOutputStream.write(command2.getBytes(Charset.forName("utf-8")));
+                    dataOutputStream.flush();
+                    dataOutputStream.writeBytes("exit\n");
+                    dataOutputStream.flush();
+                    process.waitFor();
+                } catch (Exception e) {
+                } finally {
+                    try {
+                        if (dataOutputStream != null) {
+                            dataOutputStream.close();
+                        }
+                    } catch (IOException e) {
+                    }
+                }
+            }
+        });
     }
 
 
