@@ -144,7 +144,7 @@ public class MCUDataServer extends Service {
             e.printStackTrace();
         }
         //心跳数据发送
-        Heartbeatsubscribe = Observable.intervalRange(0, Long.MAX_VALUE, 0, 2, TimeUnit.SECONDS)
+        Heartbeatsubscribe = Observable.intervalRange(0, Long.MAX_VALUE, 0, 3, TimeUnit.SECONDS)
                 .observeOn(Schedulers.io()).subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {

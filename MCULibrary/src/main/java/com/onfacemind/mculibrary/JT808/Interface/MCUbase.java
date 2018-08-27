@@ -75,7 +75,7 @@ public abstract class MCUbase implements MCUcontrol, SendControlMsg, SendQueryMs
             @Override
             public boolean test(Mcu_Notification mcu_notification) throws Exception {
                 return mcu_notification.Notification_type == Mcu_SendMsg_Type.MCU_Notification.infrared_reaction
-                        && mcu_notification.getRet() == 0;
+                        && mcu_notification.getRet() == 1;//正常情况 0感应， 但是对应1先出现 提升速度上可以使用此值
             }
         }).throttleFirst(2, TimeUnit.SECONDS);
     }
