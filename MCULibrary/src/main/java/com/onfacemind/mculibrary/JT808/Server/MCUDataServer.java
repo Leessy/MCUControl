@@ -155,7 +155,7 @@ public class MCUDataServer extends Service {
                 });
         AppHeartbeat = PublishSubject.create();
 
-        AppHeartbeat.debounce(23, TimeUnit.SECONDS)
+        AppHeartbeat.debounce(35, TimeUnit.SECONDS)
                 .subscribe(new Consumer() {
                     @Override
                     public void accept(Object o) throws Exception {
