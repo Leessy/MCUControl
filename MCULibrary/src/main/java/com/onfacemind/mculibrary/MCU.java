@@ -40,9 +40,7 @@ public class MCU extends MCUbase {
     }
 
     public static MCUcontrol instance() {
-        if (mcu != null)
-            return mcu;
-        else return new MCU();
+        return mcu != null ? mcu : new MCU();
     }
 
 
@@ -185,7 +183,7 @@ public class MCU extends MCUbase {
     public void Heartbeat() {
         try {
             imcuAidlInterface.onHeartbeat();//发送心跳测试
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -195,7 +193,7 @@ public class MCU extends MCUbase {
     public void White_light_Open() {
         try {
             imcuAidlInterface.White_light_Open();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -204,7 +202,7 @@ public class MCU extends MCUbase {
     public void White_light_Close() {
         try {
             imcuAidlInterface.White_light_Close();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -213,7 +211,7 @@ public class MCU extends MCUbase {
     public void Red_light_Open() {
         try {
             imcuAidlInterface.Red_light_Open();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -222,7 +220,7 @@ public class MCU extends MCUbase {
     public void Red_light_Close() {
         try {
             imcuAidlInterface.Red_light_Close();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -231,7 +229,7 @@ public class MCU extends MCUbase {
     public void Relay_interval_Open(int time) {
         try {
             imcuAidlInterface.Relay_interval_Open(time);
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -240,7 +238,7 @@ public class MCU extends MCUbase {
     public void Button_LED_close() {
         try {
             imcuAidlInterface.Button_LED_close();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -249,7 +247,7 @@ public class MCU extends MCUbase {
     public void Button_LED_constant() {
         try {
             imcuAidlInterface.Button_LED_constant();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -258,7 +256,7 @@ public class MCU extends MCUbase {
     public void Button_LED_FastFlash() {
         try {
             imcuAidlInterface.Button_LED_FastFlash();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -267,7 +265,7 @@ public class MCU extends MCUbase {
     public void Button_LED_SlowFlash() {
         try {
             imcuAidlInterface.Button_LED_SlowFlash();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -276,7 +274,7 @@ public class MCU extends MCUbase {
     public void HUMMER_LED_close() {
         try {
             imcuAidlInterface.HUMMER_LED_close();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -285,7 +283,7 @@ public class MCU extends MCUbase {
     public void HUMMER_LED_constant() {
         try {
             imcuAidlInterface.HUMMER_LED_constant();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -294,7 +292,7 @@ public class MCU extends MCUbase {
     public void HUMMER_LED_FastFlash() {
         try {
             imcuAidlInterface.HUMMER_LED_FastFlash();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -303,7 +301,7 @@ public class MCU extends MCUbase {
     public void HUMMER_LED_SlowFlash() {
         try {
             imcuAidlInterface.HUMMER_LED_SlowFlash();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -312,7 +310,7 @@ public class MCU extends MCUbase {
     public void heartbeat_open() {
         try {
             imcuAidlInterface.heartbeat_open();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -321,7 +319,7 @@ public class MCU extends MCUbase {
     public void heartbeat_close() {
         try {
             imcuAidlInterface.heartbeat_close();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -333,7 +331,7 @@ public class MCU extends MCUbase {
     public void Body_infrared_signal() {
         try {
             imcuAidlInterface.Body_infrared_signal();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -342,7 +340,7 @@ public class MCU extends MCUbase {
     public void Light_sensitive_resistance_signal() {
         try {
             imcuAidlInterface.Light_sensitive_resistance_signal();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -351,7 +349,7 @@ public class MCU extends MCUbase {
     public void Light_sensitive_resistance_signal_AD() {
         try {
             imcuAidlInterface.Light_sensitive_resistance_signal_AD();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -360,7 +358,7 @@ public class MCU extends MCUbase {
     public void white_light_parameters() {
         try {
             imcuAidlInterface.white_light_parameters();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -369,7 +367,7 @@ public class MCU extends MCUbase {
     public void white_light_parameters_PWM() {
         try {
             imcuAidlInterface.white_light_parameters_PWM();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -378,7 +376,7 @@ public class MCU extends MCUbase {
     public void red_light_parameters() {
         try {
             imcuAidlInterface.red_light_parameters();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -387,7 +385,7 @@ public class MCU extends MCUbase {
     public void red_light_parameters_PWM() {
         try {
             imcuAidlInterface.red_light_parameters_PWM();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -396,7 +394,7 @@ public class MCU extends MCUbase {
     public void Gate_magnetic_sensor_signal() {
         try {
             imcuAidlInterface.Gate_magnetic_sensor_signal();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -405,7 +403,7 @@ public class MCU extends MCUbase {
     public void Antiknock_sensor_signal() {
         try {
             imcuAidlInterface.Antiknock_sensor_signal();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -414,7 +412,7 @@ public class MCU extends MCUbase {
     public void VersionCode() {
         try {
             imcuAidlInterface.VersionCode();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -423,7 +421,7 @@ public class MCU extends MCUbase {
     public void Light_sensitive_ret() {
         try {
             imcuAidlInterface.Light_sensitive_ret();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -432,7 +430,7 @@ public class MCU extends MCUbase {
     public void user_defined_value() {
         try {
             imcuAidlInterface.user_defined_value();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -441,7 +439,7 @@ public class MCU extends MCUbase {
     public void mcu_id() {
         try {
             imcuAidlInterface.mcu_id();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -453,7 +451,7 @@ public class MCU extends MCUbase {
     public void setLight_sensitive_resistance_signal_AD(int[] ret) {
         try {
             imcuAidlInterface.setLight_sensitive_resistance_signal_AD(ret);
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -462,7 +460,7 @@ public class MCU extends MCUbase {
     public void setWhite_light_parameters_PWM(int[] ret) {
         try {
             imcuAidlInterface.setWhite_light_parameters_PWM(ret);
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -471,7 +469,7 @@ public class MCU extends MCUbase {
     public void setRed_light_parameters_PWM(int[] ret) {
         try {
             imcuAidlInterface.setRed_light_parameters_PWM(ret);
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -480,7 +478,7 @@ public class MCU extends MCUbase {
     public void setUser_defined_value(byte[] ret) {
         try {
             imcuAidlInterface.setUser_defined_value(ret);
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -492,8 +490,8 @@ public class MCU extends MCUbase {
     @Override
     public void SendIO_1_up() {
         try {
-            imcuAidlInterface.SendIO_1_low();
-        } catch (RemoteException e) {
+            imcuAidlInterface.SendIO_1_up();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -501,8 +499,8 @@ public class MCU extends MCUbase {
     @Override
     public void SendIO_1_low() {
         try {
-            imcuAidlInterface.SendIO_1_up();
-        } catch (RemoteException e) {
+            imcuAidlInterface.SendIO_1_low();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -511,7 +509,7 @@ public class MCU extends MCUbase {
     public void SendIO_2_up() {
         try {
             imcuAidlInterface.SendIO_2_up();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -520,7 +518,7 @@ public class MCU extends MCUbase {
     public void SendIO_2_low() {
         try {
             imcuAidlInterface.SendIO_2_low();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -529,7 +527,7 @@ public class MCU extends MCUbase {
     public void SendIO_3_up() {
         try {
             imcuAidlInterface.SendIO_3_up();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -538,7 +536,7 @@ public class MCU extends MCUbase {
     public void SendIO_3_low() {
         try {
             imcuAidlInterface.SendIO_3_low();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -547,7 +545,7 @@ public class MCU extends MCUbase {
     public void SendIO_4_up() {
         try {
             imcuAidlInterface.SendIO_4_up();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -556,7 +554,7 @@ public class MCU extends MCUbase {
     public void SendIO_4_low() {
         try {
             imcuAidlInterface.SendIO_4_low();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -565,7 +563,7 @@ public class MCU extends MCUbase {
     public void SendIO_5_up() {
         try {
             imcuAidlInterface.SendIO_5_up();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -574,7 +572,7 @@ public class MCU extends MCUbase {
     public void SendIO_5_low() {
         try {
             imcuAidlInterface.SendIO_5_low();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -583,7 +581,7 @@ public class MCU extends MCUbase {
     public void SendIO_6_up() {
         try {
             imcuAidlInterface.SendIO_6_up();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -592,7 +590,7 @@ public class MCU extends MCUbase {
     public void SendIO_6_low() {
         try {
             imcuAidlInterface.SendIO_6_low();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

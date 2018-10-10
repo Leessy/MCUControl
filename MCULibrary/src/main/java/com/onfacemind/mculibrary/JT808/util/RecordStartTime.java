@@ -18,7 +18,8 @@ public class RecordStartTime {
         long interval = l - lastServerreboot;
         //上一次启动在20秒内  关机重启
         if (interval > 0 && interval < 25 * 1000) {
-            CMDUtil.reboot();
+            //不使用自己动关机重启了！！！！！
+//            CMDUtil.reboot();
         }
     }
 
@@ -33,10 +34,14 @@ public class RecordStartTime {
         long l = System.currentTimeMillis();
         long interval = l - lastServerreboot;
         //上一次启动在20秒内  关机重启
-        if (interval > 0 && interval < 90 * 1000) {
-            CMDUtil.reboot();
-        } else {
-            CMDUtil.restartApp(context);
-        }
+//        if (interval > 0 && interval < 90 * 1000) {
+//            CMDUtil.reboot();
+//        } else {
+//            CMDUtil.restartApp(context);
+//        }
+
+
+        //不使用自己动关机重启了！！！！！
+        CMDUtil.restartApp(context);
     }
 }

@@ -658,6 +658,14 @@ public class MCUDataServer extends Service {
 
         @Override
         public void SendIO_2_up() throws RemoteException {
+            try {
+                SendCommandMsg(msgEncoder.Send_IO_Data(2, 1));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            /********************/
             if (mWindowManager == null && mFloatLayout == null && wmParams == null) {
                 AndroidSchedulers.mainThread().scheduleDirect(new Runnable() {
                     @Override
@@ -684,49 +692,90 @@ public class MCUDataServer extends Service {
 
         @Override
         public void SendIO_2_low() throws RemoteException {
-
+            try {
+                SendCommandMsg(msgEncoder.Send_IO_Data(2, 0));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         public void SendIO_3_up() throws RemoteException {
+            try {
+                SendCommandMsg(msgEncoder.Send_IO_Data(3, 1));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             // TODO: 2018/8/1 暂时做测试接口用 心跳开
             isSendHeartMsg = false;
         }
 
         @Override
         public void SendIO_3_low() throws RemoteException {
+            try {
+                SendCommandMsg(msgEncoder.Send_IO_Data(3, 0));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             // TODO: 2018/8/1 暂时做测试接口用 心跳关
             isSendHeartMsg = true;
+
         }
 
         @Override
         public void SendIO_4_up() throws RemoteException {
-
+            try {
+                SendCommandMsg(msgEncoder.Send_IO_Data(4, 1));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         public void SendIO_4_low() throws RemoteException {
-
+            try {
+                SendCommandMsg(msgEncoder.Send_IO_Data(4, 0));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         public void SendIO_5_up() throws RemoteException {
-
+            try {
+                SendCommandMsg(msgEncoder.Send_IO_Data(5, 1));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         public void SendIO_5_low() throws RemoteException {
-
+            try {
+                SendCommandMsg(msgEncoder.Send_IO_Data(5, 0));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         public void SendIO_6_up() throws RemoteException {
-
+            try {
+                SendCommandMsg(msgEncoder.Send_IO_Data(6, 1));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         public void SendIO_6_low() throws RemoteException {
-
+            try {
+                SendCommandMsg(msgEncoder.Send_IO_Data(6, 0));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

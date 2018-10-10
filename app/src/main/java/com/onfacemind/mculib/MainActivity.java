@@ -262,12 +262,14 @@ public class MainActivity extends AppCompatActivity {
 
     //心跳开
     public void heartOpen(View view) {
-        MCU.instance().getMCU_IO_MSG().SendIO_3_up();
+//        MCU.instance().getMCU_IO_MSG().SendIO_3_up();
+        MCU.instance().getMCU_IO_MSG().SendIO_4_up();
     }
 
     //心跳关
     public void heartClose(View view) {
-        MCU.instance().getMCU_IO_MSG().SendIO_3_low();
+//        MCU.instance().getMCU_IO_MSG().SendIO_3_low();
+        MCU.instance().getMCU_IO_MSG().SendIO_4_low();
     }
 
     //发送数据
