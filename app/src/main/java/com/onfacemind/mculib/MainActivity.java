@@ -430,7 +430,7 @@ public class MainActivity extends AppCompatActivity {
 
     //显示服务窗口
     public void floatView(View view) {
-        MCU.instance().getMCU_IO_MSG().SendIO_2_up();
+        MCU.instance().getMCU_Set_Parameter().setUser_defined_value(new byte[1]);//暂用接口测试
     }
 
     public void textOrde(View view) {

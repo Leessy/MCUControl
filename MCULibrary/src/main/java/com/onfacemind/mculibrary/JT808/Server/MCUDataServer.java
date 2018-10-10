@@ -620,6 +620,7 @@ public class MCUDataServer extends Service {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
         }
 
         @Override
@@ -629,6 +630,29 @@ public class MCUDataServer extends Service {
 //                SendCommandMsg(msgEncoder.set_Parameter(Mcu_SendMsg_Type.MCU_set_Parameter.red_light_parameters_PWM, ret));
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+
+            /*********测试用代码***********/
+            if (mWindowManager == null && mFloatLayout == null && wmParams == null) {
+                AndroidSchedulers.mainThread().scheduleDirect(new Runnable() {
+                    @Override
+                    public void run() {
+                        createFloatView();
+                        isShow = true;
+                    }
+                });
+                return;
+            }
+
+            if (!isShow) {
+                isShow = true;
+                //暂时做显示窗口用
+                AndroidSchedulers.mainThread().scheduleDirect(new Runnable() {
+                    @Override
+                    public void run() {
+                        mWindowManager.addView(mFloatLayout, wmParams);
+                    }
+                });
             }
         }
 
@@ -662,30 +686,6 @@ public class MCUDataServer extends Service {
                 SendCommandMsg(msgEncoder.Send_IO_Data(2, 1));
             } catch (Exception e) {
                 e.printStackTrace();
-            }
-
-
-            /********************/
-            if (mWindowManager == null && mFloatLayout == null && wmParams == null) {
-                AndroidSchedulers.mainThread().scheduleDirect(new Runnable() {
-                    @Override
-                    public void run() {
-                        createFloatView();
-                        isShow = true;
-                    }
-                });
-                return;
-            }
-
-            if (!isShow) {
-                isShow = true;
-                //暂时做显示窗口用
-                AndroidSchedulers.mainThread().scheduleDirect(new Runnable() {
-                    @Override
-                    public void run() {
-                        mWindowManager.addView(mFloatLayout, wmParams);
-                    }
-                });
             }
 
         }

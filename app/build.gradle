@@ -46,6 +46,6 @@ dependencies {
     // RxJava 2
     implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
-    implementation project(':MCULibrary')
-//    implementation 'com.github.Leessy:MCUControl:1.0.0'
+//    implementation project(':MCULibrary')
+    implementation 'com.github.Leessy:MCUControl:1.0.4'
 }
