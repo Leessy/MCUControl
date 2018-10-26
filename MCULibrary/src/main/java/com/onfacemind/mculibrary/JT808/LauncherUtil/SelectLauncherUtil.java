@@ -51,7 +51,6 @@ public class SelectLauncherUtil {
                         return aBoolean;
                     }
                 })
-                .take(1)
                 .single(false)
                 .subscribe(new Consumer<Boolean>() {
                     @Override
@@ -89,6 +88,44 @@ public class SelectLauncherUtil {
                 });
 
     }
+
+    /**
+     * app心跳断开 检查界面 3次
+     */
+    public static void shellCrashCheckRestart(final Context context) {
+        Observable.intervalRange(0, 3, 0, 200, TimeUnit.MILLISECONDS)
+                .map(new Function<Long, Boolean>() {
+                    @Override
+                    public Boolean apply(Long aLong) throws Exception {
+                        //判断   不在在当前activity界面 执行点击事件
+                        return !isForegroundContainsPackage(context);
+                    }
+                })
+                .filter(new Predicate<Boolean>() {
+                    @Override
+                    public boolean test(Boolean aBoolean) throws Exception {
+                        return aBoolean;
+                    }
+                })
+                .single(false)
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean aBoolean) throws Exception {
+                        if (aBoolean) {
+                            //不在本APP界面  并且是在选择启动器界面    执行选择点击事件
+                            if (isForeground(context, "com.android.internal.app.ResolverActivity")) {
+                                simulateClick(context);
+                            } else {
+                                //不在选择器界面 直接启动APP   并点击崩溃弹窗确定位置
+                                CMDUtil.startApp_MainActivity(context);
+                                simulateClickCrash(context);
+                            }
+                        }
+                    }
+                });
+
+    }
+
 
     /**
      * 点击屏幕的崩溃提示 如果有的话

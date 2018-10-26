@@ -155,14 +155,16 @@ public class MCUDataServer extends Service {
                 });
         AppHeartbeat = PublishSubject.create();
 
-        AppHeartbeat.debounce(35, TimeUnit.SECONDS)
+        AppHeartbeat.debounce(16, TimeUnit.SECONDS)
                 .subscribe(new Consumer() {
                     @Override
                     public void accept(Object o) throws Exception {
                         //点击提示崩溃窗口
                         System.out.println("***********APP心跳断开***********");
                         SelectLauncherUtil.simulateClickCrash(mContext);
-                        RecordStartTime.recordStartTime_AppHeart(mContext);
+//                        RecordStartTime.recordStartTime_AppHeart(mContext);
+                        //直接重启改为 ---->  检查界面后执行操作 重启
+                        SelectLauncherUtil.shellCrashCheckRestart(mContext);
                     }
                 });
     }

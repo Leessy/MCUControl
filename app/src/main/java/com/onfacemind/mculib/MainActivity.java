@@ -422,10 +422,33 @@ public class MainActivity extends AppCompatActivity {
 
     public void IO1(View view) {
         MCU.instance().getMCU_IO_MSG().SendIO_1_low();
+        MCU.instance().getMCU_IO_MSG().SendIO_2_low();
+        MCU.instance().getMCU_IO_MSG().SendIO_3_low();
+        MCU.instance().getMCU_IO_MSG().SendIO_4_low();
+        MCU.instance().getMCU_IO_MSG().SendIO_5_low();
+        MCU.instance().getMCU_IO_MSG().SendIO_6_low();
     }
 
     public void IO2(View view) {
         MCU.instance().getMCU_IO_MSG().SendIO_1_up();
+        MCU.instance().getMCU_IO_MSG().SendIO_2_up();
+        MCU.instance().getMCU_IO_MSG().SendIO_3_up();
+        MCU.instance().getMCU_IO_MSG().SendIO_4_up();
+        MCU.instance().getMCU_IO_MSG().SendIO_5_up();
+        MCU.instance().getMCU_IO_MSG().SendIO_6_up();
+
+
+//        Observable.interval(10, 350, TimeUnit.MILLISECONDS).subscribe(aLong -> {
+//            if (aLong % 2 == 0) {
+//                MCU.instance().getMCU_IO_MSG().SendIO_4_up();
+//                MCU.instance().getMCU_IO_MSG().SendIO_5_up();
+//                MCU.instance().getMCU_IO_MSG().SendIO_6_up();
+//            } else {
+//                MCU.instance().getMCU_IO_MSG().SendIO_4_low();
+//                MCU.instance().getMCU_IO_MSG().SendIO_5_low();
+//                MCU.instance().getMCU_IO_MSG().SendIO_6_low();
+//            }
+//        });
     }
 
     //显示服务窗口
