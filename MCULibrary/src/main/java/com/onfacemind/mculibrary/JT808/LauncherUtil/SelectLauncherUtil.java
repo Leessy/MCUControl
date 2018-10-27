@@ -93,11 +93,12 @@ public class SelectLauncherUtil {
      * app心跳断开 检查界面 3次
      */
     public static void shellCrashCheckRestart(final Context context) {
-        Observable.intervalRange(0, 3, 0, 200, TimeUnit.MILLISECONDS)
+        Observable.intervalRange(0, 3, 100, 200, TimeUnit.MILLISECONDS)
                 .map(new Function<Long, Boolean>() {
                     @Override
                     public Boolean apply(Long aLong) throws Exception {
                         //判断   不在在当前activity界面 执行点击事件
+                        simulateClickCrash(context);//点击一次屏幕
                         return !isForegroundContainsPackage(context);
                     }
                 })
@@ -123,6 +124,8 @@ public class SelectLauncherUtil {
                                 CMDUtil.startApp_MainActivity(context);
                                 simulateClickCrash(context);
                             }
+                        } else {
+                            System.out.println("***********APP心跳断开 还在当前界面=***********");
                         }
                     }
                 });
@@ -278,7 +281,7 @@ public class SelectLauncherUtil {
 
         /***F902**/
         if (point.x > 780 && point.x <= 850) {
-            x = (int) (point.x * 0.5);
+            x = (int) (point.x * 0.6);
         }
 
         if (point.y > 1100 && point.y <= 1300) {

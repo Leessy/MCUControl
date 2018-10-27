@@ -117,6 +117,7 @@ public class MCUDataServer extends Service {
                 super.handleMessage(msg);
                 controller.sendCommand((byte[]) msg.obj);
 
+                //test
                 if (BuildConfig.DEBUG) {
                     final byte[] bytes = (byte[]) msg.obj;
                     AndroidSchedulers.mainThread().scheduleDirect(new Runnable() {
@@ -160,6 +161,7 @@ public class MCUDataServer extends Service {
                     @Override
                     public void accept(Object o) throws Exception {
                         //点击提示崩溃窗口
+                        AppWithServerHeartbeat();//开始下一次判断计时
                         System.out.println("***********APP心跳断开***********");
                         SelectLauncherUtil.simulateClickCrash(mContext);//anr弹窗 或其他弹窗 点击确定
 //                        RecordStartTime.recordStartTime_AppHeart(mContext);
