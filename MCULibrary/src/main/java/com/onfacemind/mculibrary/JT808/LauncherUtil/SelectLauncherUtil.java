@@ -111,12 +111,15 @@ public class SelectLauncherUtil {
                 .subscribe(new Consumer<Boolean>() {
                     @Override
                     public void accept(Boolean aBoolean) throws Exception {
+                        System.out.println("***********APP心跳断开  检查界面  =***********" + aBoolean);
                         if (aBoolean) {
                             //不在本APP界面  并且是在选择启动器界面    执行选择点击事件
                             if (isForeground(context, "com.android.internal.app.ResolverActivity")) {
+                                System.out.println("***********APP心跳断开  检查界面  选择启动器=***********");
                                 simulateClick(context);
                             } else {
                                 //不在选择器界面 直接启动APP   并点击崩溃弹窗确定位置
+                                System.out.println("***********APP心跳断开  检查界面  启动APP=***********");
                                 CMDUtil.startApp_MainActivity(context);
                                 simulateClickCrash(context);
                             }
@@ -339,7 +342,8 @@ public class SelectLauncherUtil {
         List<ActivityManager.RunningTaskInfo> list = am.getRunningTasks(1);
         if (list != null && list.size() > 0) {
             ComponentName cpn = list.get(0).topActivity;
-            Log.d(TAG, "isForeground: 当前显示的主界面=" + cpn.getClassName());
+//            Log.d(TAG, "isForeground: 当前显示的主界面=" + cpn.getClassName());
+            System.out.println("***********APP心跳断开   检查界面 当前显示的主界面 =***********" + cpn.getClassName());
             String className = cpn.getClassName();
             if (!TextUtils.isEmpty(className)) {
                 if (className.contains(packageName)) {
