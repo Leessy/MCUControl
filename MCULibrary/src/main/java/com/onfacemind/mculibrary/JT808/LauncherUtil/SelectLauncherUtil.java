@@ -102,13 +102,13 @@ public class SelectLauncherUtil {
                         return !isForegroundContainsPackage(context);
                     }
                 })
-                .filter(new Predicate<Boolean>() {
-                    @Override
-                    public boolean test(Boolean aBoolean) throws Exception {
-                        return aBoolean;
-                    }
-                })
-                .single(false)
+//                .filter(new Predicate<Boolean>() {
+//                    @Override
+//                    public boolean test(Boolean aBoolean) throws Exception {
+//                        return aBoolean;
+//                    }
+//                })
+//                .single(false)
                 .subscribe(new Consumer<Boolean>() {
                     @Override
                     public void accept(Boolean aBoolean) throws Exception {
@@ -121,7 +121,7 @@ public class SelectLauncherUtil {
                             } else {
                                 //不在选择器界面 直接启动APP   并点击崩溃弹窗确定位置
                                 System.out.println("***********APP心跳断开  检查界面  启动APP=***********");
-                                CMDUtil.startApp_MainActivity(context);
+                                CMDUtil.restartApp(context);
                                 simulateClickCrash(context);
                             }
                         } else {
