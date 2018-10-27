@@ -93,7 +93,7 @@ public class SelectLauncherUtil {
      * app心跳断开 检查界面 3次
      */
     public static void shellCrashCheckRestart(final Context context) {
-        Observable.intervalRange(0, 3, 100, 350, TimeUnit.MILLISECONDS)
+        Observable.intervalRange(0, 3, 100, 1000, TimeUnit.MILLISECONDS)
                 .map(new Function<Long, Boolean>() {
                     @Override
                     public Boolean apply(Long aLong) throws Exception {
@@ -112,6 +112,7 @@ public class SelectLauncherUtil {
                 .subscribe(new Consumer<Boolean>() {
                     @Override
                     public void accept(Boolean aBoolean) throws Exception {
+                        simulateClickCrash(context);//点击一次屏幕
                         System.out.println("***********APP心跳断开  检查界面  =***********" + aBoolean);
                         if (aBoolean) {
                             //不在本APP界面  并且是在选择启动器界面    执行选择点击事件
