@@ -93,7 +93,7 @@ public class SelectLauncherUtil {
      * app心跳断开 检查界面 3次
      */
     public static void shellCrashCheckRestart(final Context context) {
-        Observable.intervalRange(0, 3, 100, 200, TimeUnit.MILLISECONDS)
+        Observable.intervalRange(0, 3, 100, 350, TimeUnit.MILLISECONDS)
                 .map(new Function<Long, Boolean>() {
                     @Override
                     public Boolean apply(Long aLong) throws Exception {
@@ -285,7 +285,7 @@ public class SelectLauncherUtil {
         }
 
         if (point.y > 1100 && point.y <= 1300) {
-            y = (int) (point.y * 0.54);
+            y = (int) (point.y * 0.59);
         }
         return new Point(x, y);
     }
