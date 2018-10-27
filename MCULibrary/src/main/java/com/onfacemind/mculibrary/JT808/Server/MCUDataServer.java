@@ -160,14 +160,14 @@ public class MCUDataServer extends Service {
                 .subscribe(new Consumer() {
                     @Override
                     public void accept(Object o) throws Exception {
+                        System.out.println("***********APP心跳断开*********** i=" + o);
+
                         //点击提示崩溃窗口
-                        AppWithServerHeartbeat();
                         if ((int) o == 1) {
                             SelectLauncherUtil.simulateClickCrash(mContext);//anr弹窗 或其他弹窗 点击确定
                             CMDUtil.restartApp(mContext);
                         }
                         AppHeartbeat.onNext(1);//开始下一次判断计时
-                        System.out.println("***********APP心跳断开***********");
                         SelectLauncherUtil.simulateClickCrash(mContext);//anr弹窗 或其他弹窗 点击确定
 //                        RecordStartTime.recordStartTime_AppHeart(mContext);
                         //直接重启改为 ---->  检查界面后执行操作 重启
