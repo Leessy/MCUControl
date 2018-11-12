@@ -101,8 +101,21 @@ public class SelectLauncherUtil {
 
                     @Override
                     public void onComplete() {
-                        //点击提示崩溃窗口  如果当前界面已自动启动
-                        simulateClickCrash(context);
+                        //完成之后 再次检查    不在APP界面时 直接启动
+                        if (!isForegroundContainsPackage(context)) {
+                            //方式 1.需要在启动activity配置filter
+//                                Intent intent = new Intent();
+//                                intent.setAction(context.getPackageName() + ".LAUNCHER");
+//                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                context.startActivity(intent);
+
+                            //方式 2.获取本context的启动activity    需系统权限
+                            CMDUtil.startApp_MainActivity(context);
+                        } else {
+                            //点击提示崩溃窗口  如果当前界面已自动启动
+                            simulateClickCrash(context);
+                        }
+
                     }
                 });
 //                .subscribe(new Consumer<Boolean>() {
