@@ -166,6 +166,7 @@ public class MCUDataServer extends Service {
                         if ((int) o == 1) {
                             SelectLauncherUtil.simulateClickCrash(mContext);//anr弹窗 或其他弹窗 点击确定
                             CMDUtil.restartApp(mContext);
+                            return;
                         }
                         AppHeartbeat.onNext(1);//开始下一次判断计时
                         SelectLauncherUtil.simulateClickCrash(mContext);//anr弹窗 或其他弹窗 点击确定

@@ -1,6 +1,5 @@
-package com.onfacemind.aifacef1002.ExternalDevice.GATEControl;
+package com.onfacemind.mculib.GATEControl;
 
-import android.serialport.SerialPort;
 import android.util.Log;
 
 import java.io.File;
@@ -9,6 +8,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.security.InvalidParameterException;
 import java.util.Arrays;
+
+import android_serialport_api.SerialPort;
 
 
 /**
@@ -99,9 +100,9 @@ public class SeriaProtController {
 //            }
 
             /* Open the serial port */
-//            mSerialPort = new SerialPort(new File(path), baudrate, 0);
             try {
-                mSerialPort = new SerialPort(path, baudrate);
+                mSerialPort = new SerialPort(new File(path), baudrate, 0);
+//                mSerialPort = new SerialPort(path, baudrate, 0);
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;

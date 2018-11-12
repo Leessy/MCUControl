@@ -1,4 +1,4 @@
-package com.onfacemind.aifacef1002.ExternalDevice.GATEControl;
+package com.onfacemind.mculib.GATEControl;
 
 import android.util.Log;
 
@@ -17,8 +17,17 @@ public class GATEControls {
     }
 
     public boolean createSerialProt() {
-        init = SeriaProtController.instance().create("/dev/ttySAC3", 9600);//固定地址
+        if (!init)
+            init = SeriaProtController.instance().create("/dev/ttySAC3", 9600);//固定地址
         return init;
+    }
+
+
+    //test
+    public void testData() {
+        if (init) {
+            SeriaProtController.instance().sendCommand("123456789".getBytes());
+        }
     }
 
     //左开

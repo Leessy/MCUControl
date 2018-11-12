@@ -431,13 +431,14 @@
             android:text="光敏电阻" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
+
             android:layout_height="wrap_content"
             android:onClick="set05"
             android:text="白光" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:onClick="set07"
             android:text="红光" />
@@ -455,11 +456,18 @@
             android:text="IO1" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:onClick="textOrde"
             android:text="反序"
             android:textColor="#ff7b00" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:onClick="test485"
+            android:text="485"
+            android:textColor="#c83702" />
     </LinearLayout>
 
 

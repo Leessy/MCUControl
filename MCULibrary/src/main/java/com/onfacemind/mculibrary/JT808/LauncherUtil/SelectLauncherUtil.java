@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
@@ -51,10 +53,16 @@ public class SelectLauncherUtil {
                         return aBoolean;
                     }
                 })
-                .single(false)
-                .subscribe(new Consumer<Boolean>() {
+                .take(1)
+//                .single(false)
+                .subscribe(new Observer<Boolean>() {
                     @Override
-                    public void accept(Boolean aBoolean) throws Exception {
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Boolean aBoolean) {
                         //执行点击事件
                         if (aBoolean) {
                             simulateClick(context);
@@ -85,7 +93,52 @@ public class SelectLauncherUtil {
                             }
                         }
                     }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //点击提示崩溃窗口  如果当前界面已自动启动
+                        simulateClickCrash(context);
+                    }
                 });
+//                .subscribe(new Consumer<Boolean>() {
+//                    @Override
+//                    public void accept(Boolean aBoolean) throws Exception {
+//                        //执行点击事件
+//                        if (aBoolean) {
+//                            simulateClick(context);
+//                        } else {
+//                            //.没有显示选择界面，判断是否在主屏幕界面
+//                            //.判断没有启动本应该程序的activity时
+//
+//                            //1.停留在系统桌面
+////                            if (isForeground(context, "com.android.launcher2.Launcher")) {
+////                                Intent intent = new Intent();
+////                                intent.setAction(context.getPackageName() + ".LAUNCHER");
+////                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+////                                context.startActivity(intent);
+////                            }
+//                            //2.当前显示界面 不是本应用程序的
+//                            if (!isForegroundContainsPackage(context)) {
+//                                //方式 1.需要在启动activity配置filter
+////                                Intent intent = new Intent();
+////                                intent.setAction(context.getPackageName() + ".LAUNCHER");
+////                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+////                                context.startActivity(intent);
+//
+//                                //方式 2.获取本context的启动activity    需系统权限
+//                                CMDUtil.startApp_MainActivity(context);
+//                            } else {
+//                                //点击提示崩溃窗口  如果当前界面已自动启动
+//                                simulateClickCrash(context);
+//                            }
+//                        }
+//                    }
+//                });
 
     }
 
@@ -112,7 +165,6 @@ public class SelectLauncherUtil {
                 .subscribe(new Consumer<Boolean>() {
                     @Override
                     public void accept(Boolean aBoolean) throws Exception {
-                        simulateClickCrash(context);//点击一次屏幕
                         System.out.println("***********APP心跳断开  检查界面  =***********" + aBoolean);
                         if (aBoolean) {
                             //不在本APP界面  并且是在选择启动器界面    执行选择点击事件
@@ -128,6 +180,7 @@ public class SelectLauncherUtil {
                         } else {
                             System.out.println("***********APP心跳断开 还在当前界面=***********");
                         }
+                        simulateClickCrash(context);//点击一次屏幕
                     }
                 });
 

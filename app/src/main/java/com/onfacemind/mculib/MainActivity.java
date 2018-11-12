@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.onfacemind.mculib.GATEControl.GATEControls;
 import com.onfacemind.mculibrary.JT808.Msg.MsgDecoder;
 import com.onfacemind.mculibrary.JT808.util.HexStringUtils;
 import com.onfacemind.mculibrary.JT808.vo.Response.Mcu_Common;
@@ -537,6 +538,17 @@ public class MainActivity extends AppCompatActivity {
         int s = random.nextInt(max) % (max - min + 1) + min;
         return s;
 
+    }
+
+
+    public void test485(View view) {
+        boolean serialProt = GATEControls.instance().createSerialProt();
+        if (!serialProt) {
+            Toast.makeText(this, "串口连接失败", Toast.LENGTH_LONG).show();
+            return;
+        }
+        GATEControls.instance().testData();
+        Toast.makeText(this, "发送成功", Toast.LENGTH_LONG).show();
     }
 //    int[] ints = {250,
 //            500,
