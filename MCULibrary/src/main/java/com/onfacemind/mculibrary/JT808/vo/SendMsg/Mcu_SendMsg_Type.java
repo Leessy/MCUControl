@@ -21,6 +21,8 @@ public class Mcu_SendMsg_Type {
          * <p>
          * 0x0005	蜂鸣器控制	0：关闭 1：常响 2：快响 3：慢响
          * 0x0006	APP心跳检测开关	1：开启 0：关闭
+         * 0x0007	MCU断电重启	延迟时间-秒（一般延迟1-3秒再关机）
+         * 0x0006	WIFI   4G  切换 1：4G     0：WIFI
          */
         public static final int White_light = 0x0001;
         public static final int red_light = 0x0002;
@@ -28,6 +30,9 @@ public class Mcu_SendMsg_Type {
         public static final int Buttun_LED = 0x0004;
         public static final int HUMMER = 0x0005;
         public static final int heartbeat_switch = 0x0006;
+        public static final int mcu_reboot = 0x0007;
+        public static final int WIFI_4G = 0x0008;
+
     }
 
     //查询参数

@@ -479,6 +479,24 @@ public class MCUDataServer extends Service {
                 e.printStackTrace();
             }
         }
+
+        @Override
+        public void mcu_reboot(int time) throws RemoteException {
+            try {
+                SendCommandMsg(msgEncoder.control_Mcu(Mcu_SendMsg_Type.Controls.mcu_reboot, (byte) time));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void checkout_WiFi_4G(int type) throws RemoteException {
+            try {
+                SendCommandMsg(msgEncoder.control_Mcu(Mcu_SendMsg_Type.Controls.WIFI_4G, (byte) type));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 /***************************MCU控制  end  *********************************/
 
 

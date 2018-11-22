@@ -470,6 +470,31 @@
             android:textColor="#c83702" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:onClick="reboot"
+            android:text="重启"
+            android:textColor="#ff4805" />
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:onClick="WIFI"
+            android:text="WIFI"
+            android:textColor="#ff4805" />
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:onClick="check4G"
+            android:text="4G"
+            android:textColor="#ff4805" />
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/textView"

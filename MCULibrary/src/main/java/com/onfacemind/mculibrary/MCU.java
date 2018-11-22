@@ -80,6 +80,7 @@ public class MCU extends MCUbase {
         return SubjectData;
     }
 
+
     /**
      * 希望获取mcu 解析对象数据 通常情况使用
      * 如果希望获取纯byte[] 需修改服务配置
@@ -319,6 +320,24 @@ public class MCU extends MCUbase {
     public void heartbeat_close() {
         try {
             imcuAidlInterface.heartbeat_close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void mcu_reboot(int time) {
+        try {
+            imcuAidlInterface.mcu_reboot(time);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void checkout_WiFi_4G(int type) {
+        try {
+            imcuAidlInterface.mcu_reboot(type);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -65,4 +65,10 @@ public interface SendControlMsg {
 
     //心跳关
     void heartbeat_close();
+
+    //重启
+    void mcu_reboot(int time);
+
+    //切换4G wifi
+    void checkout_WiFi_4G(int type);
 }

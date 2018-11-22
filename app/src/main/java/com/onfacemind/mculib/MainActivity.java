@@ -431,12 +431,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void IO2(View view) {
-        MCU.instance().getMCU_IO_MSG().SendIO_1_up();
-        MCU.instance().getMCU_IO_MSG().SendIO_2_up();
-        MCU.instance().getMCU_IO_MSG().SendIO_3_up();
+//        MCU.instance().getMCU_IO_MSG().SendIO_1_up();
+//        MCU.instance().getMCU_IO_MSG().SendIO_2_up();
+//        MCU.instance().getMCU_IO_MSG().SendIO_3_up();
         MCU.instance().getMCU_IO_MSG().SendIO_4_up();
-        MCU.instance().getMCU_IO_MSG().SendIO_5_up();
-        MCU.instance().getMCU_IO_MSG().SendIO_6_up();
+//        MCU.instance().getMCU_IO_MSG().SendIO_5_up();
+//        MCU.instance().getMCU_IO_MSG().SendIO_6_up();
 
 
 //        Observable.interval(10, 350, TimeUnit.MILLISECONDS).subscribe(aLong -> {
@@ -549,6 +549,19 @@ public class MainActivity extends AppCompatActivity {
         }
         GATEControls.instance().testData();
         Toast.makeText(this, "发送成功", Toast.LENGTH_LONG).show();
+    }
+
+    //新增重启
+    public void reboot(View view) {
+        MCU.instance().getMCU_Control().mcu_reboot(2);
+    }
+
+    public void WIFI(View view) {
+        MCU.instance().getMCU_Control().checkout_WiFi_4G(0);
+    }
+
+    public void check4G(View view) {
+        MCU.instance().getMCU_Control().checkout_WiFi_4G(1);
     }
 //    int[] ints = {250,
 //            500,
