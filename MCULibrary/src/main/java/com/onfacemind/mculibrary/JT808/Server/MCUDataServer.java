@@ -145,8 +145,9 @@ public class MCUDataServer extends Service {
             e.printStackTrace();
         }
         //心跳数据发送
-        Heartbeatsubscribe = Observable.intervalRange(0, Long.MAX_VALUE, 0, 3, TimeUnit.SECONDS)
-                .observeOn(Schedulers.io()).subscribe(new Consumer<Long>() {
+        Heartbeatsubscribe = Observable
+                .interval( 3, TimeUnit.SECONDS)
+                .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {
 //                        if (mNotification != null)
@@ -161,7 +162,6 @@ public class MCUDataServer extends Service {
                     @Override
                     public void accept(Object o) throws Exception {
                         System.out.println("***********APP心跳断开*********** i=" + o);
-
                         //点击提示崩溃窗口
                         if ((int) o == 1) {
                             SelectLauncherUtil.simulateClickCrash(mContext);//anr弹窗 或其他弹窗 点击确定
@@ -172,7 +172,7 @@ public class MCUDataServer extends Service {
                         SelectLauncherUtil.simulateClickCrash(mContext);//anr弹窗 或其他弹窗 点击确定
 //                        RecordStartTime.recordStartTime_AppHeart(mContext);
                         //直接重启改为 ---->  检查界面后执行操作 重启
-                        SelectLauncherUtil.shellCrashCheckRestart(mContext);
+                        SelectLauncherUtil.shellCrashCheckRestart(mContext);//1.在应用APP界面  点击一次屏幕2.在选择器界面，点击选择器第二个启动3.在其他界面 重新启动APP
                     }
                 });
     }

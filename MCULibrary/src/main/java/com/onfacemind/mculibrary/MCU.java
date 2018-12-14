@@ -162,15 +162,23 @@ public class MCU extends MCUbase {
      */
     private void AppheartBeat() {
         Heartbeat();
-        AppheartBeatsubscribe = Observable.timer(8, TimeUnit.SECONDS)
+//        AppheartBeatsubscribe = Observable.timer(8, TimeUnit.SECONDS)
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Consumer<Long>() {
+//                    @Override
+//                    public void accept(Long aLong) throws Exception {
+//                        AppheartBeat();
+//                    }
+//                });
+        AppheartBeatsubscribe = Observable.interval(8L, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {
                         Heartbeat();
-                        AppheartBeat();
                     }
                 });
+
     }
 
 

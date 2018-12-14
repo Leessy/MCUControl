@@ -157,6 +157,11 @@ public class SelectLauncherUtil {
 
     /**
      * app心跳断开 检查界面 3次
+     * 1.在应用APP界面  点击一次屏幕
+     *
+     * 2.在选择器界面，点击选择器第二个启动
+     * 3.在其他界面 重新启动APP
+     *
      */
     public static void shellCrashCheckRestart(final Context context) {
         Observable.intervalRange(0, 3, 100, 1000, TimeUnit.MILLISECONDS)

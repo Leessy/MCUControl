@@ -159,16 +159,16 @@ public class CMDUtil {
     }
 
 
-    /**
-     * 重启设备
-     * 备用逻辑 1 在关闭设备之前 先关闭mcu心跳 防止在系统启动过程中再次断电重启
-     */
-    public static void reboot() {
-
-        try {
-            Process process = Runtime.getRuntime().exec("reboot");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    /**
+//     * 重启设备
+//     * 备用逻辑 1 在关闭设备之前 先关闭mcu心跳 防止在系统启动过程中再次断电重启
+//     */
+//    public static void reboot() {
+//
+//        try {
+//            Process process = Runtime.getRuntime().exec("reboot");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

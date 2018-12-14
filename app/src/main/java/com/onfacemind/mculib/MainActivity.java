@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TextView v = findViewById(R.id.ver);
+        v.setText("V " + BuildConfig.VERSION_NAME);
 
         Log.d(TAG, "onCreate: ??---" + Arrays.toString(("0".getBytes())));
         byte[] bytes = new byte[16];
@@ -263,14 +265,12 @@ public class MainActivity extends AppCompatActivity {
 
     //心跳开
     public void heartOpen(View view) {
-//        MCU.instance().getMCU_IO_MSG().SendIO_3_up();
-        MCU.instance().getMCU_IO_MSG().SendIO_4_up();
+        MCU.instance().getMCU_IO_MSG().SendIO_3_up();
     }
 
     //心跳关
     public void heartClose(View view) {
-//        MCU.instance().getMCU_IO_MSG().SendIO_3_low();
-        MCU.instance().getMCU_IO_MSG().SendIO_4_low();
+        MCU.instance().getMCU_IO_MSG().SendIO_3_low();
     }
 
     //发送数据
@@ -430,7 +430,16 @@ public class MainActivity extends AppCompatActivity {
         MCU.instance().getMCU_IO_MSG().SendIO_6_low();
     }
 
-    public void IO2(View view) {
+    public void io5(View view) {
+        MCU.instance().getMCU_IO_MSG().SendIO_5_up();
+    }
+
+    public void io6(View view) {
+        MCU.instance().getMCU_IO_MSG().SendIO_6_up();
+    }
+
+
+    public void IO4(View view) {
 //        MCU.instance().getMCU_IO_MSG().SendIO_1_up();
 //        MCU.instance().getMCU_IO_MSG().SendIO_2_up();
 //        MCU.instance().getMCU_IO_MSG().SendIO_3_up();
@@ -563,21 +572,27 @@ public class MainActivity extends AppCompatActivity {
     public void check4G(View view) {
         MCU.instance().getMCU_Control().checkout_WiFi_4G(1);
     }
-//    int[] ints = {250,
-//            500,
-//            750,
-//            1000,
-//            1250,
-//            1500,
-//            1750,
-//            2000,
-//            2250,
-//            2500,
-//            2750,
-//            3000,
-//            3250,
-//            3500,
-//            3750,
-//            4000,
-//    };
+
+    public void guangminDF(View view) {
+        for (int i = 0; i < editTextsList.size(); i++) {
+            editTextsList.get(i).setText("" + gmdf[i]);
+        }
+    }
+
+    public void baiDF(View view) {
+        for (int i = 0; i < editTextsList.size(); i++) {
+            editTextsList.get(i).setText("" + baidf[i]);
+        }
+    }
+
+    public void hongDF(View view) {
+        for (int i = 0; i < editTextsList.size(); i++) {
+            editTextsList.get(i).setText("" + hongdf[i]);
+        }
+    }
+
+
+    int[] gmdf = {65530, 3750, 3450, 3250, 2950, 2700, 2450, 2200, 1950, 1700, 1450, 1200, 950, 700, 450, 2};
+    int[] baidf = {1000, 1000, 1000, 1100, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3250, 3500, 3750, 4000};
+    int[] hongdf = {400, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3250, 3500, 3750, 4000};
 }
